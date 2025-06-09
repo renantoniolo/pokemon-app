@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EFFD34762DF671B700709F4A /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFFD34752DF671AB00709F4A /* info.plist */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		EFFD34312DF670E500709F4A /* pokemon-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pokemon-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFFD34752DF671AB00709F4A /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +37,7 @@
 		EFFD34282DF670E500709F4A = {
 			isa = PBXGroup;
 			children = (
+				EFFD34752DF671AB00709F4A /* info.plist */,
 				EFFD34332DF670E500709F4A /* pokemon-app */,
 				EFFD34322DF670E500709F4A /* Products */,
 			);
@@ -109,6 +115,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFFD34762DF671B700709F4A /* info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
