@@ -28,18 +28,10 @@ struct TypeElementDetail {
     let type: Species
 }
 
-//// MARK: - SpeciesDetail
-//
-//struct SpeciesDetail {
-//    let name: String
-//    let url: String
-//}
-
 // MARK: - StatDetail
 
 struct StatDetail: Identifiable {
     let id = UUID()
-    let baseStat: Int
-    let effort: Int
-    let stat: Species
+    let statValue: Int
+    let name: String
 }

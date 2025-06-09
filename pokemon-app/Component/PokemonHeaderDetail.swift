@@ -19,7 +19,7 @@ struct PokemonHeaderDetail: View {
             }) {
                 Image(systemName: "arrow.left")
                     .foregroundColor(.white)
-                    .font(.system(size: 34))
+                    .font(.system(size: 30))
                     .padding()
             }
             .frame(width: 32, height: 32)
@@ -32,7 +32,7 @@ struct PokemonHeaderDetail: View {
             Text(code)
             .foregroundColor(Color("White"))
             .padding()
-            .font(.caption)
+            .font(.headline)
             .bold()
         }
         .padding(.horizontal)

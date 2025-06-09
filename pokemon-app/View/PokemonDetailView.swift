@@ -60,7 +60,7 @@ struct PokemonDetailView: View {
                                 
                                 // About
                                 Text("About")
-                                    .font(.title2)
+                                    .font(.headline)
                                     .fontWeight(.bold)
                                     .foregroundColor(convertColor(typeElement: viewModel.pokemon?.type))
                                 
@@ -75,24 +75,22 @@ struct PokemonDetailView: View {
                                 }
                                 
                                 // Descripton
-                                Text("Hello, I am \(pokemon.name) Pokémon and am type fire..")
-                                    .font(.headline)
+                                Text("Hello, I am \(pokemon.name) Pokémon. I am known for my unique abilities and characteristics that make me special in the Pokémon world.")
+                                    .font(.caption)
                                     .multilineTextAlignment(.center)
                                     .padding(.horizontal)
                                 
                                 // Base Stats
                                 Text("Base Stats")
-                                    .font(.title2)
+                                    .font(.headline)
                                     .fontWeight(.bold)
                                     .foregroundColor(convertColor(typeElement: viewModel.pokemon?.type))
                                 
-//                                ForEach(viewModel.pokemon?.stats ?? [], id: \.baseStat) { statDetail in
-//                                    
-//                                    //print("\(statDetail.stat.name)")
-//                                    StatBar(label: "HR",
-//                                            value: 45,
-//                                            color: convertColor(typeElement: viewModel.pokemon?.type))
-//                                }
+                                ForEach(viewModel.pokemon?.stats ?? [], id: \.id) { statDetail in
+                                    StatBar(label: statDetail.name.uppercased(),
+                                            value: statDetail.statValue,
+                                            color: convertColor(typeElement: viewModel.pokemon?.type))
+                                }
                                 
                             }
                             .padding()
@@ -139,23 +137,3 @@ struct PokemonDetailView: View {
 //#Preview {
 //    PokemonDetailView(pokemon: PokemonDTO(id: "002", name: "Pickachu", image: ""))
 //}
-
-
-struct StatBar: View {
-    let label: String
-    let value: Int
-    let color: Color
-    var body: some View {
-        HStack {
-            Text(label)
-                .frame(width: 40, alignment: .leading)
-                .foregroundColor(color)
-                .bold()
-            Text(String(format: "%03d", value))
-                .frame(width: 40, alignment: .leading)
-            ProgressView(value: Float(value), total: 100)
-                .accentColor(color)
-                .frame(height: 8)
-        }
-    }
-}

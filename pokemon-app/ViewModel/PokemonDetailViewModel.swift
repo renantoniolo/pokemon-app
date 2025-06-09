@@ -62,7 +62,8 @@ extension PokemonDetailViewModel {
     private func convertToStatDetail(stats: [Stat]) -> [StatDetail] {
         var statsDetails: [StatDetail] = []
         stats.forEach { stat in
-            statsDetails.append(StatDetail(baseStat: stat.baseStat, effort: stat.effort, stat: stat.stat))
+            statsDetails.append(StatDetail(statValue: stat.baseStat,
+                                           name: stat.stat.name))
         }
         return statsDetails
     }
