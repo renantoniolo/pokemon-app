@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct PokemonCardView: View {
     let code: String
@@ -63,8 +64,10 @@ struct PokemonCardView: View {
                         .foregroundColor(.red)
                         .frame(height: 90)
                 } else {
-                    ProgressView()
-                        .frame(height: 90)
+                    LottieView(animation: .named("pokedex"))
+                        .playing()
+                        .looping()
+                        .frame(height: 20)
                 }
             }
         }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 import Foundation
 
 struct PokemonDetailView: View {
@@ -23,7 +24,16 @@ struct PokemonDetailView: View {
     var body: some View {
         NavigationStack {
             if !viewModel.isLoad {
-                Text("Carregando...")
+                VStack{
+                    LottieView(animation: .named("pokedex"))
+                        .playing()
+                        .looping()
+                        .frame(height: 100)
+                    Text("Loading...")
+                        .padding(.all, 5)
+                        .foregroundColor(.gray)
+                        .font(.caption)
+                }
             }
             else {
                 ScrollView {

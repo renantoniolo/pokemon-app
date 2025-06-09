@@ -27,7 +27,6 @@ struct PokemonListView: View {
                         RoundIconButton()
                     }
                 }
-                .background(.green)
                 .padding(EdgeInsets(top: 0, leading: 15, bottom: 10, trailing: 15))
                 if !viewModel.isLoad {
                     Spacer()
@@ -51,7 +50,7 @@ struct PokemonListView: View {
                             .background(Color("White"))
                         }
                     }
-                    .padding()
+                    .padding(.all,10)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
                             .fill(Color.white)
