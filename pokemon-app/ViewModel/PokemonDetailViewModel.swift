@@ -10,6 +10,7 @@ import Foundation
 final class PokemonDetailViewModel: ObservableObject, Sendable {
     
     // MARK: - Published
+    
     @Published var isLoad: Bool = false
     @Published var pokemon: PokemonDetailDTO?
     @Published var mesageError: String = String()
@@ -20,13 +21,13 @@ final class PokemonDetailViewModel: ObservableObject, Sendable {
     
     // MARK: - Method Public
     
-    func fetchPokemon(name: String) async {
+    func fetchPokemon(id: Int) async {
         do {
-            let pokemon = try await NetworkCore.shared.fetchPokemon(name: name)
-            if let url = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(pokemon.id).png") {
+            let pokemon = try await NetworkCore.shared.fetchPokemon(id: id)
+            if let url = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png") {
                 DispatchQueue.main.async {
-                    self.pokemon = PokemonDetailDTO(id: "\(pokemon.id)",
-                                                    name: "\(pokemon.name)",
+                    self.pokemon = PokemonDetailDTO(id: pokemon.id,
+                                                    name: pokemon.name.capitalized,
                                                     image: url,
                                                     height: pokemon.height,
                                                     isDefault: pokemon.isDefault,
@@ -45,9 +46,7 @@ final class PokemonDetailViewModel: ObservableObject, Sendable {
             }
         }
     }
-}
-
-extension PokemonDetailViewModel {
+    
     // MARK: - Method Private
     
     private func convertToTypeElementDetail(elementsType: [TypeElement]) -> [TypeElementDetail] {

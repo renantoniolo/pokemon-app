@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct RoundIconButton: View {
+    let orderBy: () -> Void
+    
     var body: some View {
         Button(action: {
-            // ação do botão
-            print("Botão pressionado")
+            orderBy()
         }) {
             Image(systemName: "textformat")
                 .foregroundColor(.red)
@@ -20,11 +21,5 @@ struct RoundIconButton: View {
         }
         .frame(width: 32, height: 32)
         .background(Circle().fill(Color("White")))
-    }
-}
-
-struct RoundIconButton_Previews: PreviewProvider {
-    static var previews: some View {
-        RoundIconButton()
     }
 }

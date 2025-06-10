@@ -19,7 +19,7 @@ final class NetworkCore {
     static let shared = NetworkCore()
     
     // MARK: - Private
-    private let urlStringListBase: String = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+    private let urlStringListBase: String = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0"
     private let urlStringDetailBase: String = "https://pokeapi.co/api/v2/pokemon/"
 
     // MARK: - Construtor
@@ -45,8 +45,8 @@ final class NetworkCore {
     
     /// Get pokemon detail
     /// name: String
-    func fetchPokemon(name: String) async throws -> Pokemon {
-        let urlString = "\(urlStringDetailBase)\(name.lowercased())"
+    func fetchPokemon(id: Int) async throws -> Pokemon {
+        let urlString = "\(urlStringDetailBase)\(id)"
         guard let url = URL(string: urlString) else {
             throw ErrosNetwork.convertError
         }

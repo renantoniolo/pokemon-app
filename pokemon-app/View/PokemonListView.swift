@@ -7,9 +7,10 @@
 
 import SwiftUI
 import Foundation
+import Lottie
 
 struct PokemonListView: View {
-    // View Model
+
     @ObservedObject var viewModel: PokemonListViewModel = PokemonListViewModel()
 
     var body: some View {
@@ -22,15 +23,19 @@ struct PokemonListView: View {
                     
                     // Filters
                     HStack {
-                        RoundTextField()
+                        RoundTextField(text: $viewModel.searchText)
                         Spacer(minLength: 16)
-                        RoundIconButton()
+                        RoundIconButton(orderBy: viewModel.pokemonOrderByName)
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 15, bottom: 10, trailing: 15))
                 if !viewModel.isLoad {
                     Spacer()
-                    ProgressView()
+                    LottieView(animation: .named("pokedex"))
+                        .playing()
+                        .looping()
+                        .frame(height: 60)
+                    Spacer()
                 } else {
                     VStack { // Pokemon List
                         ScrollView {
@@ -40,9 +45,9 @@ struct PokemonListView: View {
                                       spacing: 2) {
                                 ForEach(viewModel.pokemonList, id: \.name) { pokemon in
                                     NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
-                                        PokemonCardView(code: pokemon.id,
-                                                       name: pokemon.name,
-                                                       imageUrl: URL(string: pokemon.image)!,
+                                        PokemonCardView(code: pokemon.code,
+                                                        name: pokemon.name,
+                                                        imageUrl: URL(string: pokemon.image)!
                                         )
                                     }
                                 }
@@ -64,10 +69,11 @@ struct PokemonListView: View {
                  await viewModel.fetchPokemonList()
                 }
             }
+            .ignoresSafeArea(.keyboard)
         }
     }
 }
 
-#Preview {
-    PokemonListView()
-}
+//#Preview {
+//    PokemonListView()
+//}

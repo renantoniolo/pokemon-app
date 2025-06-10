@@ -25,22 +25,22 @@ struct PokemonDetailView: View {
         NavigationStack {
             if !viewModel.isLoad {
                 VStack{
+                    Spacer()
                     LottieView(animation: .named("pokedex"))
                         .playing()
                         .looping()
-                        .frame(height: 100)
-                    Text("Loading...")
-                        .padding(.all, 5)
-                        .foregroundColor(.gray)
-                        .font(.caption)
+                        .frame(height: 60)
+                    Spacer()
                 }
+                .background(.gray.opacity(0.6))
             }
             else {
                 ScrollView {
                     VStack(spacing: 20) {
                         ZStack(alignment: .top) {
+                            
                             // Header
-                            PokemonHeaderDetail(code: pokemon.id,
+                            PokemonHeaderDetail(code: pokemon.code,
                                                 name: pokemon.name)
                             
                             // Pokemon Background
@@ -62,36 +62,36 @@ struct PokemonDetailView: View {
                                 // Tags
                                 HStack(spacing: 12) {
                                     ForEach(viewModel.pokemon?.type ?? [], id: \.type.name) { TypeElementDetail in
-                                        TypeTag(text: TypeElementDetail.type.name,
+                                        TypeTag(text: TypeElementDetail.type.name.capitalized,
                                                 color: Color("\(TypeElementDetail.type.name.capitalized)"))
                                     }
                                 }
                                 .padding(.top, 50)
                                 
                                 // About
-                                Text("About")
+                                Text(PokemonStrings.about.localized())
                                     .font(.headline)
                                     .fontWeight(.bold)
                                     .foregroundColor(convertColor(typeElement: viewModel.pokemon?.type))
                                 
                                 HStack(spacing: 40) {
-                                    StatInfo(icon: "scalemass", label: "Weight", value: "\(viewModel.pokemon?.weight ?? 0) kg")
-                                    StatInfo(icon: "ruler", label: "Height", value: "\(viewModel.pokemon?.height ?? 0) m")
+                                    StatInfo(icon: "scalemass", label: PokemonStrings.weight.localized(), value: "\(viewModel.pokemon?.weight ?? 0) kg")
+                                    StatInfo(icon: "ruler", label: PokemonStrings.height.localized(), value: "\(viewModel.pokemon?.height ?? 0) m")
                                     VStack {
-                                        Text("Chlorophyll")
-                                        Text("Overgrow")
+                                        Text(PokemonStrings.chlorophyll.localized())
+                                        Text(PokemonStrings.overgrow.localized())
                                     }
                                     .font(.caption)
                                 }
                                 
                                 // Descripton
-                                Text("Hello, I am \(pokemon.name) Pokémon. I am known for my unique abilities and characteristics that make me special in the Pokémon world.")
+                                Text(PokemonStrings.text_description.localized())
                                     .font(.caption)
                                     .multilineTextAlignment(.center)
                                     .padding(.horizontal)
                                 
                                 // Base Stats
-                                Text("Base Stats")
+                                Text(PokemonStrings.base_stats.localized())
                                     .font(.headline)
                                     .fontWeight(.bold)
                                     .foregroundColor(convertColor(typeElement: viewModel.pokemon?.type))
@@ -138,7 +138,7 @@ struct PokemonDetailView: View {
         .navigationBarBackButtonHidden()
         .onAppear() {
             Task {
-              await viewModel.fetchPokemon(name: pokemon.name)
+                await viewModel.fetchPokemon(id: pokemon.id)
             }
         }
     }

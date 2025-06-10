@@ -18,5 +18,3 @@ struct PokemonList: Decodable {
 struct PokemonListItem: Decodable {
     let name: String
 }
-
-

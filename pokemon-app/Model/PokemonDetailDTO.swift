@@ -10,7 +10,7 @@ import Foundation
 // MARK: - PokemonDetailDTO
 
 struct PokemonDetailDTO: Identifiable {
-    let id: String
+    let id: Int
     let name: String
     let image: URL
     let height: Int

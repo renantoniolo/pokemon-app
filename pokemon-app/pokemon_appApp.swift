@@ -11,7 +11,7 @@ import SwiftUI
 struct pokemon_appApp: App {
     var body: some Scene {
         WindowGroup {
-            PokemonListView()
+            SplashScreenView()
         }
     }
 }

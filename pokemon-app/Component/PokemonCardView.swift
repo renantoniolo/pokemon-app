@@ -46,7 +46,7 @@ struct PokemonCardView: View {
                 // Pokemon Name
                 Text(name.capitalized)
                     .font(.caption2)
-                    .foregroundColor(Color("Dark"))
+                    .foregroundColor(Color("Dark_background"))
                     .multilineTextAlignment(.center)
             }
             .padding()

@@ -8,19 +8,13 @@
 import SwiftUI
 
 struct RoundTextField: View {
-    @State private var text = String()
+    @Binding var text: String
     var body: some View {
-        TextField("Search",
+        TextField(PokemonStrings.search.localized(),
                   text: $text)
         .frame(height: 32)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .cornerRadius(16)
         .shadow(radius: 1)
-    }
-}
-
-struct RoundTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        RoundTextField()
     }
 }

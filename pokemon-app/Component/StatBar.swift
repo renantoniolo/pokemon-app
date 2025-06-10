@@ -14,7 +14,7 @@ struct StatBar: View {
     var body: some View {
         HStack {
             Text(label)
-                .frame(width: 110, alignment: .leading)
+                .frame(width: 115, alignment: .leading)
                 .font(.caption)
                 .foregroundColor(color)
                 .bold()
